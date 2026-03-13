@@ -1,22 +1,15 @@
-# Tugas Topik Khusus — Redis dengan Python
+# Implementasi Redis dengan Python
 
-Program Python sederhana yang mendemonstrasikan operasi dasar Redis.
+Program Python sederhana yang mendemonstrasikan operasi dasar Redis menggunakan Docker.
 
-## Tipe Data yang Didemonstrasikan
+## Operasi Redis yang Digunakan
 
-| No | Tipe Data   | Operasi                    |
-|----|-------------|----------------------------|
-| 1  | String      | `SET`, `GET`, `DEL`        |
-| 2  | Hash        | `HSET`, `HGETALL`          |
-| 3  | List        | `LPUSH`, `RPUSH`, `LRANGE` |
-| 4  | Set         | `SADD`, `SMEMBERS`         |
-| 5  | Sorted Set  | `ZADD`, `ZRANGE`           |
-| 6  | Expiry/TTL  | `SETEX`, `TTL`             |
-
-## Prasyarat
-
-- **Docker** (untuk menjalankan Redis)
-- **Python 3.x**
+| No | Operasi   | Perintah Redis | Keterangan                     |
+|----|-----------|----------------|--------------------------------|
+| 1  | SET       | `SET key value`| Menyimpan data                 |
+| 2  | GET       | `GET key`      | Mengambil data                 |
+| 3  | DEL       | `DEL key`      | Menghapus data                 |
+| 4  | EXPIRE    | `EXPIRE key s` | Set waktu kadaluarsa (detik)   |
 
 ## Cara Menjalankan
 
@@ -24,6 +17,12 @@ Program Python sederhana yang mendemonstrasikan operasi dasar Redis.
 
 ```bash
 docker run -d --name tugas-redis -p 6379:6379 redis
+```
+
+Jika container sudah pernah dibuat, cukup start:
+
+```bash
+docker start tugas-redis
 ```
 
 ### 2. Install dependency Python
@@ -38,6 +37,14 @@ pip install -r requirements.txt
 python main.py
 ```
 
-## Output
+## Contoh Output
 
-Program akan menampilkan hasil setiap operasi Redis di terminal, termasuk demonstrasi TTL (Time To Live) pada key yang memiliki waktu kadaluarsa.
+```
+Ping: True
+SET user:1 = Abid Mustaghfirin
+GET user:1 = Abid Mustaghfirin
+DEL user:1 -> GET user:1 = None
+SET session:1 = active (expire 5 detik)
+TTL session:1 = 5 detik
+Setelah 3 detik -> TTL = 2 detik
+```
