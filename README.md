@@ -12,7 +12,7 @@ Setelah terinstall, pastikan Docker sudah berjalan.
 
 ### 2. Menjalankan Redis via Docker
 
-Buka terminal (PowerShell / Command Prompt) dan jalankan:
+Buka terminal (PowerShell / Command Prompt) di Visual Studio Code (VSC) dan jalankan:
 
 ```bash
 docker run -d --name tugas-redis -p 6379:6379 redis
